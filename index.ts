@@ -3,7 +3,6 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (_, res) => {
@@ -11,5 +10,6 @@ app.get('/', (_, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+  if (Bun.env.NODE_ENV === 'development')
+    console.log(`✅ Listening on http://localhost:${port}`);
 });
